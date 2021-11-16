@@ -1,40 +1,20 @@
 import org.junit.*;
 import static org.junit.Assert.*;
 
-public class ArrayStackTest {
-    private ArrayStack testStack;
+public class ArrayStackTest extends DStackTests {
 
-    @Test
-    public void testIsEmpty() {
-        testStack = new ArrayStack();
-        assertTrue( testStack.isEmpty() );
+    @Override
+    protected DStack getStack() {
+        return new ArrayStack();
     }
 
     @Test
-    public void testPush() {
-        testStack = new ArrayStack();
-        testStack.push( 2.0 );
-        assertFalse( testStack.isEmpty() );
-    }
-
-    @Test
-    public void testPop() {
-        testStack = new ArrayStack();
-        testStack.push( 1.0 );
-        testStack.push( 2.0 );
-        assertEquals( 2.0, testStack.pop(), 0.001 );
-        assertEquals( 1.0, testStack.pop(), 0.001 );
-        testIsEmpty();
-    }
-
-    @Test
-    public void testPeek() {
-        testStack = new ArrayStack();
-        testStack.push( 1.0 );
-        testStack.push( 2.0 );
-        assertEquals( 2.0, testStack.peek(), 0.001 );
-        testStack.pop();
-        assertEquals( 1.0, testStack.peek(), 0.001 );
-        assertFalse( testStack.isEmpty() );
+    public void testResize() {
+        ArrayStack testStack = new ArrayStack();
+        for (int i = 0; i < ArrayStack.defaultSize + 1; i++) {
+            testStack.push(i);
+            assertEquals( i, testStack.peek(), 0.001);
+        }
+        assertEquals(testStack.getSize(), ArrayStack.defaultSize * 2);
     }
 }

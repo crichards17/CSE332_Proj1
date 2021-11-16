@@ -21,8 +21,7 @@ public class GArrayStack<T> implements GStack<T> {
         if (head == size -1) {
             expandStack();
         }
-        head++;
-        stack[head] = d;
+        stack[++head] = d;
     }
 
     private void expandStack() {
@@ -39,9 +38,7 @@ public class GArrayStack<T> implements GStack<T> {
         if (isEmpty()) {
             throw new EmptyStackException();
         }
-        T popVal = stack[head];
-        head--;
-        return popVal;
+        return stack[head--];
     }
 
     public T peek() {

@@ -2,7 +2,7 @@ import java.util.EmptyStackException;
 
 public class GListStack<T> implements GStack<T> {
 
-    private class Node<T> {
+    private static class Node<T> {
         T val;
         Node<T> next;
 

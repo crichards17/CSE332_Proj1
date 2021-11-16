@@ -2,7 +2,7 @@ import java.util.EmptyStackException;
 
 public class ListStack implements DStack {
 
-    private class Node {
+    private static class Node {
         double val;
         Node next;
 

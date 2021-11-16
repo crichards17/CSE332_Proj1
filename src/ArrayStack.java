@@ -4,10 +4,10 @@ public class ArrayStack implements DStack {
     private int size;
     private int head;
     private double[] stack;
-
+    static final int defaultSize = 10;
 
     public ArrayStack() {
-        size = 10;
+        size = defaultSize;
         stack = new double[size];
         head = -1;
     }
@@ -19,14 +19,13 @@ public class ArrayStack implements DStack {
     public void push(double d) {
         if (head == size -1) {
             expandStack();
-            //Implement helper
         }
-        head++;
-        stack[head] = d;
+        stack[++head] = d;
     }
 
     private void expandStack() {
         double[] temp = new double[size * 2];
+        //Manual array copy required by spec
         for (int i = 0; i < size; i++) {
             temp[i] = stack[i];
         }
@@ -38,15 +37,17 @@ public class ArrayStack implements DStack {
         if (isEmpty()) {
             throw new EmptyStackException();
         }
-        double popVal = stack[head];
-        head--;
-        return popVal;
+        return stack[head--];
     }
 
     public double peek() {
         if (isEmpty()) {
-        throw new EmptyStackException();
+            throw new EmptyStackException();
         }
         return stack[head];
+    }
+
+    int getSize() {
+        return size;
     }
 }
